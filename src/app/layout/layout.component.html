@@ -1,1 +1,18 @@
-<p>layout works!</p>
+<ngx-datatable
+  class="bootstrap"
+  [rows]="filas"
+  [columns]="columnas"
+  [headerHeight]="30"
+  [footerHeight]="50"
+  [rowHeight]="50"
+  [columnMode]="modoColumna"
+  [scrollbarH]="true"
+  [scrollbarV]="false"
+  [limit]="10">
+  <ngx-datatable-column
+    *ngFor="let columna of columnas"
+    [name]="columna.name"
+    [prop]="columna.prop"
+    [width]="columna.width">
+  </ngx-datatable-column>
+</ngx-datatable>
