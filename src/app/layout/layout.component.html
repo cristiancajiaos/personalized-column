@@ -1,18 +1,40 @@
 <ngx-datatable
   class="bootstrap"
   [rows]="filas"
-  [columns]="columnas"
   [headerHeight]="30"
   [footerHeight]="50"
   [rowHeight]="50"
   [columnMode]="modoColumna"
   [scrollbarH]="true"
   [scrollbarV]="false"
-  [limit]="10">
+  [limit]="10"
+  [selectionType]="selectionType"
+  [selected]="selected">
+  <!--
   <ngx-datatable-column
     *ngFor="let columna of columnas"
     [name]="columna.name"
     [prop]="columna.prop"
     [width]="columna.width">
   </ngx-datatable-column>
+  -->
+  <ngx-datatable-column [width]="50">
+    <ng-template let-column="column" ngx-datatable-header-template>Vista?</ng-template>
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <i class="fa-solid fa-user fa-fw"
+      [ngClass]="{'text-primary':isSelected(value)}"></i>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column
+    name="Título"
+    prop="titulo"
+    [width]="400">
+  </ngx-datatable-column>
+  <ngx-datatable-column
+    name="Año"
+    prop="annio"
+    [width]="125">
+  </ngx-datatable-column>
 </ngx-datatable>
+
+<p>Selected?: {{selected | json}}</p>

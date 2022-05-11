@@ -1,6 +1,6 @@
 import { Pelicula } from './../interfaces/pelicula';
 import { Component, OnInit } from '@angular/core';
-import { ColumnMode } from '@swimlane/ngx-datatable';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-layout',
@@ -20,6 +20,8 @@ export class LayoutComponent implements OnInit {
   public filas!: Pelicula[];
 
   public modoColumna = ColumnMode.force;
+  public selectionType = SelectionType.multi;
+  public selected: Pelicula[] = [];
 
   constructor() {}
 
@@ -146,5 +148,10 @@ export class LayoutComponent implements OnInit {
         duracion: '119',
       },
     ];
+  }
+
+  isSelected(reg: Pelicula): boolean {
+    let title = reg.titulo;
+    return this.selected.filter(pelicula => pelicula.titulo.includes(title)).length > 0
   }
 }
